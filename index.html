@@ -429,6 +429,9 @@
         let messageIndex = 0;
 
         // Valentine question functions
+        let yesButtonScale = 1;
+        let noClickCount = 0;
+
         function sayYes() {
             const response = document.getElementById('valentineResponse');
             const buttons = document.getElementById('questionButtons');
@@ -459,17 +462,19 @@
         }
 
         function moveButton() {
-            const button = document.getElementById('noButton');
-            const maxX = window.innerWidth - 200;
-            const maxY = window.innerHeight - 100;
+            const noButton = document.getElementById('noButton');
+            const yesButton = document.querySelector('#questionButtons .love-button:first-child');
             
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+            noClickCount++;
             
-            button.style.position = 'fixed';
-            button.style.left = randomX + 'px';
-            button.style.top = randomY + 'px';
-            button.style.transition = 'all 0.3s ease';
+            // Make Yes button bigger each time
+            yesButtonScale += 0.3;
+            yesButton.style.transform = `scale(${yesButtonScale})`;
+            yesButton.style.transition = 'all 0.3s ease';
+            
+            // Make No button smaller as Yes gets bigger
+            noButton.style.transform = `scale(${Math.max(0.5, 1 - noClickCount * 0.1)})`;
+            noButton.style.transition = 'all 0.3s ease';
             
             // Make the button text change to encourage saying yes
             const noTexts = [
@@ -482,7 +487,7 @@
                 "Think again! 💕",
                 "You know you want to say yes! 😊"
             ];
-            button.textContent = noTexts[Math.floor(Math.random() * noTexts.length)];
+            noButton.textContent = noTexts[Math.min(noClickCount - 1, noTexts.length - 1)];
         }
 
         function createCelebrationHeart() {
