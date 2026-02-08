@@ -297,6 +297,62 @@
             }
         }
 
+        .rose-button {
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .rose-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .rose-button:active {
+            transform: translateY(-2px);
+        }
+
+        .rose-item {
+            font-size: 2.5rem;
+            animation: roseAppear 0.5s ease-out;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .rose-item:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        @keyframes roseAppear {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes ringShine {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 3.5rem;
@@ -375,6 +431,57 @@
             <p style="font-size: 1rem; color: #888;">days of love and counting...</p>
         </div>
 
+        <!-- Rose Day Section -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 240, 245, 0.5)); animation-delay: 1.4s;">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 20px;">Happy Rose Day! 🌹</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">
+                Every rose I give you represents a reason why I love you
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 40px 0;">
+                <button class="rose-button" onclick="giveRose('red')" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);">
+                    🌹 Red Rose
+                </button>
+                <button class="rose-button" onclick="giveRose('pink')" style="background: linear-gradient(135deg, #ffa6c9, #ff7eb3);">
+                    🌸 Pink Rose
+                </button>
+            </div>
+
+            <div id="roseGarden" style="min-height: 100px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin: 30px 0; padding: 20px; background: rgba(255, 255, 255, 0.5); border-radius: 15px;">
+                <p style="color: #999; font-style: italic;">Click a rose button to add to the garden 🌹</p>
+            </div>
+
+            <div id="roseMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--deep-rose); min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+        </div>
+
+        <!-- Propose Day Section -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 182, 193, 0.3)); animation-delay: 1.5s;">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 20px;">Happy Propose Day!</h2>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <div id="ringBox" style="display: inline-block; cursor: pointer; transition: transform 0.3s ease;" onclick="openRingBox()">
+                    <div style="font-size: 6rem; animation: pulse 2s ease-in-out infinite;">🎁</div>
+                    <p style="font-size: 1.2rem; color: #666; margin-top: 10px;">Click to open the box!</p>
+                </div>
+                
+                <div id="proposalRing" style="display: none; margin-top: 30px;">
+                    <div style="font-size: 8rem; animation: ringShine 2s ease-in-out infinite;">💍</div>
+                    <div id="proposalMessage" style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); margin: 30px 0; line-height: 1.6;">
+                        Riya, tu meri zindagi ka sabse khoobsurat lamha hai baby 💕<br>
+                        <span style="font-size: 2rem;">Kya tum mujhse pyaar karogi? 🥺</span>
+                    </div>
+                    
+                    <div id="proposeButtons" style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+                        <button class="love-button" onclick="acceptProposal()" style="background: linear-gradient(135deg, #ff6ec7, #ffd93d, #c44aff); font-size: 1.2rem; color: #c44569;">
+                            Haan! I Love You! 💚
+                        </button>
+                    </div>
+
+                    <div id="proposalResponse" style="margin-top: 30px; font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); opacity: 0; transition: opacity 0.5s ease;"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="interactive-section">
             <h2 style="font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 30px;">Will You Be My Valentine Miss Riya Jain ?</h2>
             
@@ -418,11 +525,11 @@
 
         // Love button interaction
         const messages = [
-            "And I love you more than words can say! 💕",
+            "And I love you more than words can sayy! 💕",
             "You make my heart skip a beat! 💓",
-            "Forever and always, my love! 💖",
-            "You are my everything! 💗",
-            "My heart belongs to you! 💝",
+            "Forever and always yours, my love! 💖",
+            "You are my everything to me babyy, i love you! 💗",
+            "My heart belongs to you baby! 💝",
             "You're the best thing that ever happened to me! 💞"
         ];
 
@@ -559,6 +666,137 @@
         const daysTogether = Math.floor((today - anniversaryDate) / (1000 * 60 * 60 * 24));
         document.getElementById('daysCounter').textContent = daysTogether;
         */
+
+        // Rose Day Functions
+        let roseCount = 0;
+        let gardenCleared = false;
+
+        const roseMessages = {
+            red: [
+                "This red rose is for you babyyy!!!",
+                "Har din tere liye mera pyaar aur badh jaata hai 💕"
+            ],
+            pink: [
+                "Tu meri zindagi mein woh pinkness laati hai jo missing thi 💗",
+                "Teri kindness se mera dil pighal jaata hai 🌺"
+            ]
+        };
+
+        const roseEmojis = {
+            red: '🌹',
+            pink: '🌸'
+        };
+
+        function giveRose(color) {
+            const garden = document.getElementById('roseGarden');
+            const message = document.getElementById('roseMessage');
+            
+            // Clear placeholder text on first rose
+            if (!gardenCleared) {
+                garden.innerHTML = '';
+                gardenCleared = true;
+            }
+            
+            // Create rose element
+            const rose = document.createElement('span');
+            rose.className = 'rose-item';
+            rose.textContent = roseEmojis[color];
+            rose.title = `${color} rose`;
+            
+            // Add click to remove
+            rose.onclick = function() {
+                rose.style.animation = 'roseAppear 0.3s ease-out reverse';
+                setTimeout(() => rose.remove(), 300);
+                roseCount--;
+            };
+            
+            garden.appendChild(rose);
+            roseCount++;
+            
+            // Show message
+            const messages = roseMessages[color];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            message.textContent = randomMessage;
+            message.style.opacity = '1';
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+            }, 3000);
+
+            // Special message when garden gets full
+            if (roseCount === 10) {
+                setTimeout(() => {
+                    message.textContent = "A beautiful bouquet for my beautiful Riya! 💐✨";
+                    message.style.opacity = '1';
+                }, 3500);
+            }
+        }
+
+        // Propose Day Functions
+        let proposeNoClicks = 0;
+
+        function openRingBox() {
+            const ringBox = document.getElementById('ringBox');
+            const proposalRing = document.getElementById('proposalRing');
+            
+            ringBox.style.animation = 'burst 0.5s ease-out forwards';
+            
+            setTimeout(() => {
+                ringBox.style.display = 'none';
+                proposalRing.style.display = 'block';
+                
+                // Create sparkle effect
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        createSparkle();
+                    }, i * 50);
+                }
+            }, 500);
+        }
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = (window.innerWidth / 2 - 50 + Math.random() * 100) + 'px';
+            sparkle.style.top = (window.innerHeight / 2 - 50 + Math.random() * 100) + 'px';
+            sparkle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            sparkle.style.zIndex = '10000';
+            sparkle.textContent = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+            sparkle.style.pointerEvents = 'none';
+            
+            document.body.appendChild(sparkle);
+            
+            const float = sparkle.animate([
+                { transform: 'translateY(0) scale(0)', opacity: 0 },
+                { transform: 'translateY(-100px) scale(1)', opacity: 1 },
+                { transform: 'translateY(-200px) scale(0)', opacity: 0 }
+            ], {
+                duration: 2000,
+                easing: 'ease-out'
+            });
+            
+            float.onfinish = () => sparkle.remove();
+        }
+
+        function acceptProposal() {
+            const response = document.getElementById('proposalResponse');
+            const buttons = document.getElementById('proposeButtons');
+            
+            buttons.style.display = 'none';
+            response.innerHTML = `
+                <div style="font-size: 3rem; margin-bottom: 20px;">🎉💕✨</div>
+                Yayyyy! Tu ne haan bol diya! 😭💕<br>
+                <span style="font-size: 2rem;">Main sabse lucky insaan hoon! 🥹</span>
+            `;
+            response.style.opacity = '1';
+            
+            // Massive celebration
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createCelebrationHeart();
+                }, i * 100);
+            }
+        }
     </script>
 </body>
 </html>
