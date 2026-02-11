@@ -578,6 +578,27 @@
             <div id="teddyMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--deep-rose); min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
         </div>
 
+        <!-- Promise Day Section -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(135, 206, 250, 0.2), rgba(173, 216, 230, 0.3)); animation-delay: 1.8s;">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Promise Day! 🤝</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 11, 2026</p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">
+                Aaj main tujhse kuch promises karta hoon baby 💙
+            </p>
+
+            <div style="max-width: 600px; margin: 40px auto;">
+                <div id="promisesContainer">
+                    <button class="love-button" onclick="makePromise()" style="background: linear-gradient(135deg, #4facfe, #00f2fe); margin-bottom: 30px;">
+                        Click for a Promise 🤝
+                    </button>
+                </div>
+
+                <div id="promisesList" style="margin-top: 30px;"></div>
+            </div>
+
+            <div id="promiseMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #4682b4; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+        </div>
+
         <div class="interactive-section">
             <h2 style="font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 30px;">Will You Be My Valentine Miss Riya Jain ?</h2>
             
@@ -988,6 +1009,97 @@
             });
             
             float.onfinish = () => heart.remove();
+        }
+
+        // Promise Day Functions
+        let promiseIndex = 0;
+        const promises = [
+            "Main promise karta hoon ki tera hamesha saath dunga! 😊",
+            "Main promise karta hoon ki tujhe aur teri family ko hamesha respect dunga! 💕",
+            "Main promise karta hoon ki tujhe din mein kam se kam 100 baar I love you bolunga! 💖",
+            "I promise ki we will grow together and push each other to get better 👂",
+            "Main promise karta hoon ki I will keep giving you surprices! 😂🎁"
+        ];
+
+        function makePromise() {
+            if (promiseIndex >= promises.length) {
+                const message = document.getElementById('promiseMessage');
+                message.textContent = "Saare promises ho gaye baby! Main sab nibhaunga! 💙";
+                message.style.opacity = '1';
+                
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                }, 3000);
+                return;
+            }
+
+            const promisesList = document.getElementById('promisesList');
+            const promiseCard = document.createElement('div');
+            promiseCard.style.cssText = `
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 20px;
+                border-radius: 15px;
+                color: white;
+                margin-bottom: 15px;
+                font-size: 1.1rem;
+                text-align: center;
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: all 0.5s ease;
+            `;
+            
+            promiseCard.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 10px;">🤝</div>
+                ${promises[promiseIndex]}
+            `;
+            
+            promisesList.appendChild(promiseCard);
+            
+            setTimeout(() => {
+                promiseCard.style.opacity = '1';
+                promiseCard.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Create promise sparkles
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createPromiseSparkle();
+                }, i * 50);
+            }
+
+            promiseIndex++;
+
+            if (promiseIndex === promises.length) {
+                setTimeout(() => {
+                    const message = document.getElementById('promiseMessage');
+                    message.textContent = "All promises made with love! 💙✨";
+                    message.style.opacity = '1';
+                }, 500);
+            }
+        }
+
+        function createPromiseSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = (window.innerWidth / 2 - 100 + Math.random() * 200) + 'px';
+            sparkle.style.top = (window.innerHeight / 2 - 100 + Math.random() * 200) + 'px';
+            sparkle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            sparkle.style.zIndex = '10000';
+            sparkle.textContent = ['💙', '✨', '🤝', '💫'][Math.floor(Math.random() * 4)];
+            sparkle.style.pointerEvents = 'none';
+            
+            document.body.appendChild(sparkle);
+            
+            const float = sparkle.animate([
+                { transform: 'translateY(0) scale(0) rotate(0deg)', opacity: 0 },
+                { transform: 'translateY(-100px) scale(1) rotate(180deg)', opacity: 1 },
+                { transform: 'translateY(-200px) scale(0) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: 2000,
+                easing: 'ease-out'
+            });
+            
+            float.onfinish = () => sparkle.remove();
         }
     </script>
 </body>
