@@ -30,7 +30,6 @@
             color: #4a4a4a;
         }
 
-        /* Floating hearts background */
         .hearts-bg {
             position: fixed;
             top: 0;
@@ -404,6 +403,44 @@
             transform: scale(1.2);
         }
 
+        .hug-person {
+            font-size: 10rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hug-person.hugging {
+            animation: hugAnimation 1s ease-in-out;
+        }
+
+        @keyframes hugAnimation {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+            }
+        }
+
+        .hug-counter {
+            font-size: 3rem;
+            color: var(--rose);
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        @keyframes flyingKiss {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--kx), var(--ky)) scale(0.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 3.5rem;
@@ -427,6 +464,10 @@
 
             .teddy-bear {
                 font-size: 6rem;
+            }
+
+            .hug-person {
+                font-size: 7rem;
             }
         }
     </style>
@@ -490,21 +531,15 @@
             <p style="font-size: 1rem; color: #888;">days of love and counting...</p>
         </div>
 
-        <!-- Rose Day Section -->
+        <!-- Rose Day -->
         <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 240, 245, 0.5)); animation-delay: 1.4s;">
             <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Rose Day! 🌹</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 7, 2026</p>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">
-                Every rose I give you represents a reason why I love you
-            </p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">Every rose I give you represents a reason why I love you</p>
             
             <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 40px 0;">
-                <button class="rose-button" onclick="giveRose('red')" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);">
-                    🌹 Red Rose
-                </button>
-                <button class="rose-button" onclick="giveRose('pink')" style="background: linear-gradient(135deg, #ffa6c9, #ff7eb3);">
-                    🌸 Pink Rose
-                </button>
+                <button class="rose-button" onclick="giveRose('red')" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);">🌹 Red Rose</button>
+                <button class="rose-button" onclick="giveRose('pink')" style="background: linear-gradient(135deg, #ffa6c9, #ff7eb3);">🌸 Pink Rose</button>
             </div>
 
             <div id="roseGarden" style="min-height: 100px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin: 30px 0; padding: 20px; background: rgba(255, 255, 255, 0.5); border-radius: 15px;">
@@ -514,7 +549,7 @@
             <div id="roseMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--deep-rose); min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
         </div>
 
-        <!-- Propose Day Section -->
+        <!-- Propose Day -->
         <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 182, 193, 0.3)); animation-delay: 1.5s;">
             <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Propose Day babyy!</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 8, 2026</p>
@@ -527,15 +562,13 @@
                 
                 <div id="proposalRing" style="display: none; margin-top: 30px;">
                     <div style="font-size: 8rem; animation: ringShine 2s ease-in-out infinite;">💍</div>
-                    <div id="proposalMessage" style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); margin: 30px 0; line-height: 1.6;">
+                    <div style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); margin: 30px 0; line-height: 1.6;">
                         Riya, tu meri zindagi ka sabse khoobsurat lamha hai baby 💕<br>
                         <span style="font-size: 2rem;"> I love you so muchh baby and I miss you 🥺</span>
                     </div>
                     
                     <div id="proposeButtons" style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
-                        <button class="love-button" onclick="acceptProposal()" style="background: linear-gradient(135deg, #ff6ec7, #ffd93d, #c44aff); font-size: 1.2rem; color: #c44569;">
-                            I Love You too! 💚
-                        </button>
+                        <button class="love-button" onclick="acceptProposal()" style="background: linear-gradient(135deg, #ff6ec7, #ffd93d, #c44aff); font-size: 1.2rem; color: #c44569;">I Love You too! 💚</button>
                     </div>
 
                     <div id="proposalResponse" style="margin-top: 30px; font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); opacity: 0; transition: opacity 0.5s ease;"></div>
@@ -543,15 +576,13 @@
             </div>
         </div>
 
-        <!-- Chocolate Day Section -->
+        <!-- Chocolate Day -->
         <div class="main-card" style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.15), rgba(210, 180, 140, 0.3)); animation-delay: 1.6s;">
             <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Chocolate Day! 🍫</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 9, 2026</p>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 20px;">
-                Tere liye chocolates baby! 💝
-            </p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 20px;">Tere liye chocolates baby! 💝</p>
 
-            <div class="chocolate-box" id="chocolateBox">
+            <div class="chocolate-box">
                 <div class="chocolate" onclick="eatChocolate(this, 0)">🍫</div>
                 <div class="chocolate" onclick="eatChocolate(this, 1)">🍫</div>
                 <div class="chocolate" onclick="eatChocolate(this, 2)">🍫</div>
@@ -563,13 +594,11 @@
             <div id="chocolateMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #8B4513; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
         </div>
 
-        <!-- Teddy Day Section -->
+        <!-- Teddy Day -->
         <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 192, 203, 0.3), rgba(255, 228, 225, 0.4)); animation-delay: 1.7s;">
             <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Teddy Day! 🧸</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 10, 2026</p>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">
-                Ye teddy tere liye baby, jab main nahi hoon tab ye tujhe company dega! 🥰
-            </p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">Ye teddy tere liye baby, jab main nahi hoon tab ye tujhe company dega! 🥰</p>
 
             <div style="text-align: center; margin: 40px 0;">
                 <div class="teddy-bear" onclick="hugTeddy()">🧸</div>
@@ -578,25 +607,49 @@
             <div id="teddyMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--deep-rose); min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
         </div>
 
-        <!-- Promise Day Section -->
+        <!-- Promise Day -->
         <div class="main-card" style="background: linear-gradient(135deg, rgba(135, 206, 250, 0.2), rgba(173, 216, 230, 0.3)); animation-delay: 1.8s;">
             <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Promise Day! 🤝</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 11, 2026</p>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">
-                Aaj main tujhse kuch promises karta hoon baby 💙
-            </p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">Aaj main tujhse kuch promises karta hoon baby 💙</p>
 
             <div style="max-width: 600px; margin: 40px auto;">
-                <div id="promisesContainer">
-                    <button class="love-button" onclick="makePromise()" style="background: linear-gradient(135deg, #4facfe, #00f2fe); margin-bottom: 30px;">
-                        Click for a Promise 🤝
-                    </button>
-                </div>
-
+                <button class="love-button" onclick="makePromise()" style="background: linear-gradient(135deg, #4facfe, #00f2fe); margin-bottom: 30px;">Click for a Promise 🤝</button>
                 <div id="promisesList" style="margin-top: 30px;"></div>
             </div>
 
             <div id="promiseMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #4682b4; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+        </div>
+
+        <!-- Hug Day -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 218, 185, 0.3)); animation-delay: 1.9s;">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Hug Day! 🤗</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 12, 2026</p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">Kitne virtual hugs chahiye? Jitne chahe utne le lo baby! 🫂</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <div class="hug-person" id="hugPerson" onclick="giveHug()">🤗</div>
+                
+                <div style="margin-top: 30px;">
+                    <p style="font-size: 1.3rem; color: #666; margin-bottom: 10px;">Virtual Hugs Given:</p>
+                    <div class="hug-counter" id="hugCounter">0</div>
+                </div>
+            </div>
+
+            <div id="hugMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #ff8c00; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+        </div>
+
+        <!-- Kiss Day -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(255, 182, 193, 0.3)); animation-delay: 2s;">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--deep-rose); margin-bottom: 10px;">Happy Kiss Day! 💋</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #999; margin-bottom: 30px;">February 13, 2026</p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 30px;">Sending you all my love with flying kisses! 😘</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="love-button" onclick="sendKiss()" style="background: linear-gradient(135deg, #ff1493, #ff69b4); font-size: 1.3rem;">Send a Kiss 💋</button>
+            </div>
+
+            <div id="kissMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #ff1493; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
         </div>
 
         <div class="interactive-section">
@@ -619,7 +672,6 @@
     </div>
 
     <script>
-        // Floating hearts background
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -628,89 +680,35 @@
             heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
             heart.style.animationDelay = Math.random() * 5 + 's';
             document.getElementById('heartsBackground').appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 8000);
+            setTimeout(() => heart.remove(), 8000);
         }
-
-        // Create hearts continuously
         setInterval(createHeart, 800);
-        for (let i = 0; i < 15; i++) {
-            setTimeout(createHeart, i * 300);
-        }
+        for (let i = 0; i < 15; i++) setTimeout(createHeart, i * 300);
 
-        // Love button interaction
-        const messages = [
-            "And I love you more than words can sayy! 💕",
-            "You make my heart skip a beat! 💓",
-            "Forever and always yours, my love! 💖",
-            "You are my everything to me babyy, i love you! 💗",
-            "My heart belongs to you baby! 💝",
-            "You're the best thing that ever happened to me! 💞"
-        ];
-
-        let messageIndex = 0;
-
-        // Valentine question functions
-        let yesButtonScale = 1;
-        let noClickCount = 0;
+        const messages = ["And I love you more than words can sayy! 💕", "You make my heart skip a beat! 💓", "Forever and always yours, my love! 💖", "You are my everything to me babyy, i love you! 💗", "My heart belongs to you baby! 💝", "You're the best thing that ever happened to me! 💞"];
+        let messageIndex = 0, yesButtonScale = 1, noClickCount = 0;
 
         function sayYes() {
             const response = document.getElementById('valentineResponse');
             const buttons = document.getElementById('questionButtons');
             const loveButton = document.getElementById('loveButton');
-            
             buttons.style.display = 'none';
-            response.innerHTML = `
-                <div style="background: linear-gradient(135deg, var(--rose), var(--deep-rose)); 
-                            color: white; 
-                            padding: 40px; 
-                            border-radius: 20px; 
-                            font-size: 2rem;
-                            font-family: 'Sacramento', cursive;
-                            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);">
-                    Yay! You've made me the happiest person alive! 💕✨<br>
-                    <span style="font-size: 1.3rem; font-family: 'Crimson Pro', serif;">I love you so much!</span>
-                </div>
-            `;
+            response.innerHTML = `<div style="background: linear-gradient(135deg, var(--rose), var(--deep-rose)); color: white; padding: 40px; border-radius: 20px; font-size: 2rem; font-family: 'Sacramento', cursive; box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);">Yay! You've made me the happiest person alive! 💕✨<br><span style="font-size: 1.3rem; font-family: 'Crimson Pro', serif;">I love you so much!</span></div>`;
             response.style.opacity = '1';
             loveButton.style.display = 'inline-block';
-            
-            // Create celebration hearts
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    createCelebrationHeart();
-                }, i * 100);
-            }
+            for (let i = 0; i < 30; i++) setTimeout(() => createCelebrationHeart(), i * 100);
         }
 
         function moveButton() {
             const noButton = document.getElementById('noButton');
             const yesButton = document.querySelector('#questionButtons .love-button:first-child');
-            
             noClickCount++;
-            
-            // Make Yes button bigger each time
             yesButtonScale += 0.3;
             yesButton.style.transform = `scale(${yesButtonScale})`;
             yesButton.style.transition = 'all 0.3s ease';
-            
-            // Make No button smaller as Yes gets bigger
             noButton.style.transform = `scale(${Math.max(0.5, 1 - noClickCount * 0.1)})`;
             noButton.style.transition = 'all 0.3s ease';
-            
-            // Make the button text change to encourage saying yes
-            const noTexts = [
-                "Oyyyee!!! 😢",
-                "Really??? 💔",
-                "WTF???????? 💔",
-                "MT KARRR!! 👿",
-                "Please? 🥹",
-                "Are you sure? 🥺",
-                "Think again! 💕",
-                "You know you want to say yes! 😊"
-            ];
+            const noTexts = ["Oyyyee!!! 😢", "Really??? 💔", "WTF???????? 💔", "MT KARRR!! 👿", "Please? 🥹", "Are you sure? 🥺", "Think again! 💕", "You know you want to say yes! 😊"];
             noButton.textContent = noTexts[Math.min(noClickCount - 1, noTexts.length - 1)];
         }
 
@@ -723,17 +721,8 @@
             heart.style.zIndex = '10000';
             heart.textContent = ['❤️', '💕', '💖', '💗', '💓', '💝', '💞'][Math.floor(Math.random() * 7)];
             heart.style.pointerEvents = 'none';
-            
             document.body.appendChild(heart);
-            
-            const fall = heart.animate([
-                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-            ], {
-                duration: 3000 + Math.random() * 2000,
-                easing: 'ease-in'
-            });
-            
+            const fall = heart.animate([{transform: 'translateY(0) rotate(0deg)', opacity: 1}, {transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0}], {duration: 3000 + Math.random() * 2000, easing: 'ease-in'});
             fall.onfinish = () => heart.remove();
         }
 
@@ -741,15 +730,9 @@
             const surpriseMsg = document.getElementById('surpriseMessage');
             surpriseMsg.textContent = messages[messageIndex];
             surpriseMsg.classList.add('show');
-            
             messageIndex = (messageIndex + 1) % messages.length;
-
-            // Create heart burst effect
             createHeartBurst(event);
-
-            setTimeout(() => {
-                surpriseMsg.classList.remove('show');
-            }, 3000);
+            setTimeout(() => surpriseMsg.classList.remove('show'), 3000);
         }
 
         function createHeartBurst(e) {
@@ -758,100 +741,45 @@
                 const heart = document.createElement('div');
                 heart.className = 'heart-burst';
                 heart.textContent = colors[Math.floor(Math.random() * colors.length)];
-                
                 const angle = (i / 12) * Math.PI * 2;
                 const distance = 100 + Math.random() * 50;
                 const tx = Math.cos(angle) * distance;
                 const ty = Math.sin(angle) * distance;
-                
                 heart.style.left = e.clientX + 'px';
                 heart.style.top = e.clientY + 'px';
                 heart.style.setProperty('--tx', tx + 'px');
                 heart.style.setProperty('--ty', ty + 'px');
-                
                 document.body.appendChild(heart);
-                
                 setTimeout(() => heart.remove(), 1000);
             }
         }
 
-        // Rose Day Functions
-        let roseCount = 0;
-        let gardenCleared = false;
-
-        const roseMessages = {
-            red: [
-                "This red rose is for you babyyy!!!",
-                "Har din tere liye mera pyaar aur badh jaata hai 💕"
-            ],
-            pink: [
-                "Tu meri zindagi mein woh pinkness laati hai jo missing thi 💗",
-                "Teri kindness se mera dil pighal jaata hai 🌺"
-            ]
-        };
-
-        const roseEmojis = {
-            red: '🌹',
-            pink: '🌸'
-        };
+        let roseCount = 0, gardenCleared = false;
+        const roseMessages = {red: ["This red rose is for you babyyy!!!", "Har din tere liye mera pyaar aur badh jaata hai 💕"], pink: ["Tu meri zindagi mein woh pinkness laati hai jo missing thi 💗", "Teri kindness se mera dil pighal jaata hai 🌺"]};
+        const roseEmojis = {red: '🌹', pink: '🌸'};
 
         function giveRose(color) {
             const garden = document.getElementById('roseGarden');
             const message = document.getElementById('roseMessage');
-            
-            if (!gardenCleared) {
-                garden.innerHTML = '';
-                gardenCleared = true;
-            }
-            
+            if (!gardenCleared) { garden.innerHTML = ''; gardenCleared = true; }
             const rose = document.createElement('span');
             rose.className = 'rose-item';
             rose.textContent = roseEmojis[color];
-            rose.title = `${color} rose`;
-            
-            rose.onclick = function() {
-                rose.style.animation = 'roseAppear 0.3s ease-out reverse';
-                setTimeout(() => rose.remove(), 300);
-                roseCount--;
-            };
-            
+            rose.onclick = function() { rose.style.animation = 'roseAppear 0.3s ease-out reverse'; setTimeout(() => rose.remove(), 300); roseCount--; };
             garden.appendChild(rose);
             roseCount++;
-            
-            const messages = roseMessages[color];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            message.textContent = randomMessage;
+            const msgs = roseMessages[color];
+            message.textContent = msgs[Math.floor(Math.random() * msgs.length)];
             message.style.opacity = '1';
-            
-            setTimeout(() => {
-                message.style.opacity = '0';
-            }, 3000);
-
-            if (roseCount === 10) {
-                setTimeout(() => {
-                    message.textContent = "A beautiful bouquet for my beautiful Riya! 💐✨";
-                    message.style.opacity = '1';
-                }, 3500);
-            }
+            setTimeout(() => message.style.opacity = '0', 3000);
+            if (roseCount === 10) setTimeout(() => { message.textContent = "A beautiful bouquet for my beautiful Riya! 💐✨"; message.style.opacity = '1'; }, 3500);
         }
 
-        // Propose Day Functions
         function openRingBox() {
             const ringBox = document.getElementById('ringBox');
             const proposalRing = document.getElementById('proposalRing');
-            
             ringBox.style.animation = 'burst 0.5s ease-out forwards';
-            
-            setTimeout(() => {
-                ringBox.style.display = 'none';
-                proposalRing.style.display = 'block';
-                
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        createSparkle();
-                    }, i * 50);
-                }
-            }, 500);
+            setTimeout(() => { ringBox.style.display = 'none'; proposalRing.style.display = 'block'; for (let i = 0; i < 20; i++) setTimeout(() => createSparkle(), i * 50); }, 500);
         }
 
         function createSparkle() {
@@ -863,69 +791,32 @@
             sparkle.style.zIndex = '10000';
             sparkle.textContent = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
             sparkle.style.pointerEvents = 'none';
-            
             document.body.appendChild(sparkle);
-            
-            const float = sparkle.animate([
-                { transform: 'translateY(0) scale(0)', opacity: 0 },
-                { transform: 'translateY(-100px) scale(1)', opacity: 1 },
-                { transform: 'translateY(-200px) scale(0)', opacity: 0 }
-            ], {
-                duration: 2000,
-                easing: 'ease-out'
-            });
-            
+            const float = sparkle.animate([{transform: 'translateY(0) scale(0)', opacity: 0}, {transform: 'translateY(-100px) scale(1)', opacity: 1}, {transform: 'translateY(-200px) scale(0)', opacity: 0}], {duration: 2000, easing: 'ease-out'});
             float.onfinish = () => sparkle.remove();
         }
 
         function acceptProposal() {
             const response = document.getElementById('proposalResponse');
             const buttons = document.getElementById('proposeButtons');
-            
             buttons.style.display = 'none';
-            response.innerHTML = `
-                <div style="font-size: 3rem; margin-bottom: 20px;">🎉💕✨</div>
-                Yayyyy!!!!!!😭💕<br>
-                <span style="font-size: 2rem;">Main duniya ka sabse lucky insaan hoon! 🥹</span>
-            `;
+            response.innerHTML = `<div style="font-size: 3rem; margin-bottom: 20px;">🎉💕✨</div>Yayyyy!!!!!!😭💕<br><span style="font-size: 2rem;">Main duniya ka sabse lucky insaan hoon! 🥹</span>`;
             response.style.opacity = '1';
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    createCelebrationHeart();
-                }, i * 100);
-            }
+            for (let i = 0; i < 50; i++) setTimeout(() => createCelebrationHeart(), i * 100);
         }
 
-        // Chocolate Day Functions
         let chocolatesEaten = 0;
-        const chocolateMessages = [
-            "Mmm, yummy chocolate! 🍫",
-            "Tu bhi meethi hai jaise ye chocolate! 😋",
-            "Tere bina sab fika hai baby! 💕",
-            "Tu meri favorite chocolate hai! 🍫",
-            "Har chocolate yaad dilata hai tujhe! 💝",
-            "Saari chocolates khatam! Ab tu chahiye! 😘"
-        ];
+        const chocolateMessages = ["Mmm, yummy chocolate! 🍫", "Tu bhi meethi hai jaise ye chocolate! 😋", "Tere bina sab fika hai baby! 💕", "Tu meri favorite chocolate hai! 🍫", "Har chocolate yaad dilata hai tujhe! 💝", "Saari chocolates khatam! Ab tu chahiye! 😘"];
 
         function eatChocolate(element, index) {
             if (element.classList.contains('eaten')) return;
-            
             element.classList.add('eaten');
             chocolatesEaten++;
-            
             const message = document.getElementById('chocolateMessage');
             message.textContent = chocolateMessages[chocolatesEaten - 1];
             message.style.opacity = '1';
-            
-            setTimeout(() => {
-                message.style.opacity = '0';
-            }, 3000);
-
-            // Create chocolate sparkles
-            for (let i = 0; i < 5; i++) {
-                createChocolateSparkle(element);
-            }
+            setTimeout(() => message.style.opacity = '0', 3000);
+            for (let i = 0; i < 5; i++) createChocolateSparkle(element);
         }
 
         function createChocolateSparkle(element) {
@@ -938,53 +829,23 @@
             sparkle.style.zIndex = '10000';
             sparkle.textContent = '✨';
             sparkle.style.pointerEvents = 'none';
-            
             document.body.appendChild(sparkle);
-            
             const angle = Math.random() * Math.PI * 2;
             const distance = 50 + Math.random() * 50;
             const tx = Math.cos(angle) * distance;
             const ty = Math.sin(angle) * distance;
-            
-            const float = sparkle.animate([
-                { transform: 'translate(0, 0) scale(0)', opacity: 1 },
-                { transform: `translate(${tx}px, ${ty}px) scale(1)`, opacity: 0 }
-            ], {
-                duration: 1000,
-                easing: 'ease-out'
-            });
-            
+            const float = sparkle.animate([{transform: 'translate(0, 0) scale(0)', opacity: 1}, {transform: `translate(${tx}px, ${ty}px) scale(1)`, opacity: 0}], {duration: 1000, easing: 'ease-out'});
             float.onfinish = () => sparkle.remove();
         }
 
-        // Teddy Day Functions
-        let teddyHugs = 0;
-        const teddyMessages = [
-            "Aww! Teddy ko hug mil gaya! 🤗",
-            "Ye teddy tujhe hamesha pyaar dega! 💕",
-            "Main chahta hoon tujhe aise hi hug karna! 🥰",
-            "Teddy kehta hai: I love you Riya! 💖",
-            "Tujhe hug karne ka dil kar raha hai! 🤗",
-            "Ye teddy teri jagah le sakta hai jab main busy hoon! 🧸"
-        ];
+        const teddyMessages = ["Aww! Teddy ko hug mil gaya! 🤗", "Ye teddy tujhe hamesha pyaar dega! 💕", "Main chahta hoon tujhe aise hi hug karna! 🥰", "Teddy kehta hai: I love you Riya! 💖", "Tujhe hug karne ka dil kar raha hai! 🤗", "Ye teddy teri jagah le sakta hai jab main busy hoon! 🧸"];
 
         function hugTeddy() {
-            teddyHugs++;
             const message = document.getElementById('teddyMessage');
-            const randomMessage = teddyMessages[Math.floor(Math.random() * teddyMessages.length)];
-            message.textContent = randomMessage;
+            message.textContent = teddyMessages[Math.floor(Math.random() * teddyMessages.length)];
             message.style.opacity = '1';
-            
-            setTimeout(() => {
-                message.style.opacity = '0';
-            }, 3000);
-
-            // Create hearts around teddy
-            for (let i = 0; i < 8; i++) {
-                setTimeout(() => {
-                    createTeddyHeart();
-                }, i * 100);
-            }
+            setTimeout(() => message.style.opacity = '0', 3000);
+            for (let i = 0; i < 8; i++) setTimeout(() => createTeddyHeart(), i * 100);
         }
 
         function createTeddyHeart() {
@@ -996,86 +857,31 @@
             heart.style.zIndex = '10000';
             heart.textContent = ['❤️', '💕', '💖'][Math.floor(Math.random() * 3)];
             heart.style.pointerEvents = 'none';
-            
             document.body.appendChild(heart);
-            
-            const float = heart.animate([
-                { transform: 'translateY(0) scale(0)', opacity: 0 },
-                { transform: 'translateY(-150px) scale(1)', opacity: 1 },
-                { transform: 'translateY(-300px) scale(0)', opacity: 0 }
-            ], {
-                duration: 2000,
-                easing: 'ease-out'
-            });
-            
+            const float = heart.animate([{transform: 'translateY(0) scale(0)', opacity: 0}, {transform: 'translateY(-150px) scale(1)', opacity: 1}, {transform: 'translateY(-300px) scale(0)', opacity: 0}], {duration: 2000, easing: 'ease-out'});
             float.onfinish = () => heart.remove();
         }
 
-        // Promise Day Functions
         let promiseIndex = 0;
-        const promises = [
-            "Main promise karta hoon ki tera hamesha saath dunga! 😊",
-            "Main promise karta hoon ki tujhe aur teri family ko hamesha respect dunga! 💕",
-            "Main promise karta hoon ki tujhe din mein kam se kam 100 baar I love you bolunga! (T&C)😂💖",
-            "I promise ki we will grow together and push each other to get better 👂",
-            "Main promise karta hoon ki I will keep giving you surprices! 😂🎁"
-        ];
+        const promises = ["Main promise karta hoon ki tera hamesha saath dunga! 😊", "Main promise karta hoon ki tujhe aur teri family ko hamesha respect dunga! 💕", "Main promise karta hoon ki tujhe din mein kam se kam 100 baar I love you bolunga! (T&C)😂💖", "I promise ki we will grow together and push each other to get better 👂", "Main promise karta hoon ki I will keep giving you surprices! 😂🎁"];
 
         function makePromise() {
             if (promiseIndex >= promises.length) {
                 const message = document.getElementById('promiseMessage');
                 message.textContent = "Saare promises ho gaye baby! Main sab nibhaunga! 💙";
                 message.style.opacity = '1';
-                
-                setTimeout(() => {
-                    message.style.opacity = '0';
-                }, 3000);
+                setTimeout(() => message.style.opacity = '0', 3000);
                 return;
             }
-
             const promisesList = document.getElementById('promisesList');
             const promiseCard = document.createElement('div');
-            promiseCard.style.cssText = `
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                padding: 20px;
-                border-radius: 15px;
-                color: white;
-                margin-bottom: 15px;
-                font-size: 1.1rem;
-                text-align: center;
-                opacity: 0;
-                transform: translateX(-50px);
-                transition: all 0.5s ease;
-            `;
-            
-            promiseCard.innerHTML = `
-                <div style="font-size: 2rem; margin-bottom: 10px;">🤝</div>
-                ${promises[promiseIndex]}
-            `;
-            
+            promiseCard.style.cssText = `background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 15px; color: white; margin-bottom: 15px; font-size: 1.1rem; text-align: center; opacity: 0; transform: translateX(-50px); transition: all 0.5s ease;`;
+            promiseCard.innerHTML = `<div style="font-size: 2rem; margin-bottom: 10px;">🤝</div>${promises[promiseIndex]}`;
             promisesList.appendChild(promiseCard);
-            
-            setTimeout(() => {
-                promiseCard.style.opacity = '1';
-                promiseCard.style.transform = 'translateX(0)';
-            }, 100);
-
-            // Create promise sparkles
-            for (let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    createPromiseSparkle();
-                }, i * 50);
-            }
-
+            setTimeout(() => { promiseCard.style.opacity = '1'; promiseCard.style.transform = 'translateX(0)'; }, 100);
+            for (let i = 0; i < 10; i++) setTimeout(() => createPromiseSparkle(), i * 50);
             promiseIndex++;
-
-            if (promiseIndex === promises.length) {
-                setTimeout(() => {
-                    const message = document.getElementById('promiseMessage');
-                    message.textContent = "All promises made with love! 💙✨";
-                    message.style.opacity = '1';
-                }, 500);
-            }
+            if (promiseIndex === promises.length) setTimeout(() => { const message = document.getElementById('promiseMessage'); message.textContent = "All promises made with love! 💙✨"; message.style.opacity = '1'; }, 500);
         }
 
         function createPromiseSparkle() {
@@ -1087,19 +893,73 @@
             sparkle.style.zIndex = '10000';
             sparkle.textContent = ['💙', '✨', '🤝', '💫'][Math.floor(Math.random() * 4)];
             sparkle.style.pointerEvents = 'none';
-            
             document.body.appendChild(sparkle);
-            
-            const float = sparkle.animate([
-                { transform: 'translateY(0) scale(0) rotate(0deg)', opacity: 0 },
-                { transform: 'translateY(-100px) scale(1) rotate(180deg)', opacity: 1 },
-                { transform: 'translateY(-200px) scale(0) rotate(360deg)', opacity: 0 }
-            ], {
-                duration: 2000,
-                easing: 'ease-out'
-            });
-            
+            const float = sparkle.animate([{transform: 'translateY(0) scale(0) rotate(0deg)', opacity: 0}, {transform: 'translateY(-100px) scale(1) rotate(180deg)', opacity: 1}, {transform: 'translateY(-200px) scale(0) rotate(360deg)', opacity: 0}], {duration: 2000, easing: 'ease-out'});
             float.onfinish = () => sparkle.remove();
+        }
+
+        let hugCount = 0;
+        const hugMessages = ["Tight hug for my baby! 🤗💕", "Tere hugs se sab theek ho jaata hai! 🫂", "Main tujhe hamesha aise hi pakad ke rakhunga! 💖", "Virtual hugs but real feelings! 🥰", "Tere pass aa ke hug karne ka mann kar raha hai! 😊", "One more hug for the road! 🤗"];
+
+        function giveHug() {
+            hugCount++;
+            document.getElementById('hugCounter').textContent = hugCount;
+            const hugPerson = document.getElementById('hugPerson');
+            hugPerson.classList.add('hugging');
+            setTimeout(() => hugPerson.classList.remove('hugging'), 1000);
+            const message = document.getElementById('hugMessage');
+            message.textContent = hugMessages[Math.floor(Math.random() * hugMessages.length)];
+            message.style.opacity = '1';
+            setTimeout(() => message.style.opacity = '0', 3000);
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.style.position = 'fixed';
+                    heart.style.left = (window.innerWidth / 2 - 50 + Math.random() * 100) + 'px';
+                    heart.style.top = (window.innerHeight / 2 - 50 + Math.random() * 100) + 'px';
+                    heart.style.fontSize = '40px';
+                    heart.style.zIndex = '10000';
+                    heart.textContent = ['🤗', '💕', '🫂'][Math.floor(Math.random() * 3)];
+                    heart.style.pointerEvents = 'none';
+                    document.body.appendChild(heart);
+                    const float = heart.animate([{transform: 'scale(0) rotate(0deg)', opacity: 0}, {transform: 'scale(1.2) rotate(180deg)', opacity: 1}, {transform: 'scale(0) rotate(360deg)', opacity: 0}], {duration: 1500, easing: 'ease-out'});
+                    float.onfinish = () => heart.remove();
+                }, i * 100);
+            }
+            if (hugCount === 10) setTimeout(() => { message.textContent = "10 hugs! Tujhe itna pyaar karta hoon main! 💕🤗"; message.style.opacity = '1'; }, 1000);
+        }
+
+        let kissCount = 0;
+        const kissMessages = ["Muaaah! 😘💋", "Ek kiss tere liye baby! 💕", "Flying kiss caught! 😊💋", "Tere lips pe kiss karne ka mann hai! 🥰", "Sending all my love with this kiss! 💖", "Bahut saare kisses for you! 😘😘😘"];
+
+        function sendKiss() {
+            kissCount++;
+            const message = document.getElementById('kissMessage');
+            message.textContent = kissMessages[Math.floor(Math.random() * kissMessages.length)];
+            message.style.opacity = '1';
+            setTimeout(() => message.style.opacity = '0', 3000);
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const kiss = document.createElement('div');
+                    kiss.style.position = 'fixed';
+                    kiss.style.left = (window.innerWidth / 2) + 'px';
+                    kiss.style.top = (window.innerHeight / 2) + 'px';
+                    kiss.style.fontSize = '40px';
+                    kiss.style.zIndex = '10000';
+                    kiss.textContent = ['💋', '😘', '💕'][Math.floor(Math.random() * 3)];
+                    kiss.style.pointerEvents = 'none';
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 200 + Math.random() * 200;
+                    const kx = Math.cos(angle) * distance;
+                    const ky = Math.sin(angle) * distance;
+                    kiss.style.setProperty('--kx', kx + 'px');
+                    kiss.style.setProperty('--ky', ky + 'px');
+                    document.body.appendChild(kiss);
+                    kiss.style.animation = 'flyingKiss 2s ease-out forwards';
+                    setTimeout(() => kiss.remove(), 2000);
+                }, i * 150);
+            }
+            if (kissCount === 5) setTimeout(() => { message.textContent = "Bahut saari kisses mil gayi! I love you so much! 💋💕"; message.style.opacity = '1'; }, 1000);
         }
     </script>
 </body>
