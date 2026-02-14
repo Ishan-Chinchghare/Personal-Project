@@ -441,6 +441,61 @@
             }
         }
 
+        .love-lock {
+            font-size: 8rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .love-lock:hover {
+            transform: scale(1.1);
+        }
+
+        .love-lock.locked {
+            animation: lockShake 0.5s ease-in-out;
+        }
+
+        @keyframes lockShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .memory-card.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .memory-card .memory-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .memory-card p {
+            font-size: 1.2rem;
+            color: #2d3436;
+            font-family: 'Sacramento', cursive;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 3.5rem;
@@ -468,6 +523,10 @@
 
             .hug-person {
                 font-size: 7rem;
+            }
+
+            .love-lock {
+                font-size: 6rem;
             }
         }
     </style>
@@ -650,6 +709,53 @@
             </div>
 
             <div id="kissMessage" style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2rem; color: #ff1493; min-height: 50px; margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+        </div>
+
+        <!-- Valentine's Day - FINAL SECTION -->
+        <div class="main-card" style="background: linear-gradient(135deg, rgba(255, 0, 100, 0.15), rgba(255, 182, 193, 0.4), rgba(255, 240, 245, 0.3)); animation-delay: 2.1s; border: 3px solid var(--rose);">
+            <h2 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 4rem; color: var(--deep-rose); margin-bottom: 5px;">Our First Valentine's Day! 💕</h2>
+            <p style="text-align: center; font-size: 1.3rem; color: #999; margin-bottom: 20px;">February 14, 2026</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <div style="font-size: 10rem; animation: heartbeat 1.5s ease-in-out infinite;">❤️</div>
+                <p style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); margin: 20px 0; line-height: 1.8;">
+                    Ye hamara pehla Valentine's Day hai baby! 🥺💕<br>
+                    <span style="font-size: 2rem;">Aur main chahta hoon ki ye sab se special ho! ✨</span>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <div class="love-lock" id="loveLock" onclick="lockOurLove()">🔒</div>
+                <p style="font-size: 1.3rem; color: #666; margin-top: 15px;">Click to lock our love forever!</p>
+                <div id="lockMessage" style="font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--deep-rose); margin-top: 20px; opacity: 0; transition: opacity 0.5s ease;"></div>
+            </div>
+
+            <div style="max-width: 700px; margin: 40px auto;">
+                <h3 style="text-align: center; font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); margin-bottom: 30px;">Our First Memories Together 💭</h3>
+                <button class="love-button" onclick="revealMemories()" id="memoryButton" style="background: linear-gradient(135deg, #ee5a6f, #f093fb, #f5576c);">Unlock Our Memories 🔓</button>
+                
+                <div id="memoriesContainer" style="margin-top: 30px;"></div>
+            </div>
+
+            <div style="text-align: center; margin: 50px 0; padding: 40px; background: rgba(255, 255, 255, 0.6); border-radius: 20px;">
+                <h3 style="font-family: 'Sacramento', cursive; font-size: 2.8rem; color: var(--deep-rose); margin-bottom: 20px;">To My Valentine 💌</h3>
+                <p style="font-size: 1.3rem; line-height: 2; color: #555; font-style: italic;">
+                    Riya, ye sirf hamara pehla Valentine's hai...<br>
+                    Lekin main promise karta hoon ki aane wale har Valentine's<br>
+                    pehle se bhi zyada special hoga! 💕<br><br>
+                    Tere saath har din Valentine's Day jaisa lagta hai,<br>
+                    kyunki tu meri zindagi mein pyaar, khushi aur magic laati hai! ✨<br><br>
+                    <span style="font-size: 1.6rem; color: var(--deep-rose);">I love you so so so much baby! 💖</span><br>
+                    <span style="font-size: 1.2rem;">Thank you for making this my best Valentine's ever! 🥰</span>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="love-button" onclick="finalSurprise()" id="finalButton" style="background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe); font-size: 1.4rem; padding: 25px 60px;">
+                    One Last Surprise! 🎁
+                </button>
+                <div id="finalMessage" style="margin-top: 30px; font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--deep-rose); opacity: 0; transition: opacity 0.5s ease;"></div>
+            </div>
         </div>
 
         <div class="interactive-section">
@@ -960,6 +1066,84 @@
                 }, i * 150);
             }
             if (kissCount === 5) setTimeout(() => { message.textContent = "Bahut saari kisses mil gayi! I love you so much! 💋💕"; message.style.opacity = '1'; }, 1000);
+        }
+
+        // Valentine's Day Functions
+        let loveLocked = false;
+
+        function lockOurLove() {
+            const lock = document.getElementById('loveLock');
+            const message = document.getElementById('lockMessage');
+            
+            if (!loveLocked) {
+                lock.classList.add('locked');
+                lock.innerHTML = '🔐';
+                message.innerHTML = "Our love is locked forever! 💕🔐<br><span style='font-size: 1.5rem;'>Ab koi nahi tod sakta hamara pyaar! 😊</span>";
+                message.style.opacity = '1';
+                loveLocked = true;
+                
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.style.position = 'fixed';
+                        heart.style.left = (window.innerWidth / 2 - 100 + Math.random() * 200) + 'px';
+                        heart.style.top = (window.innerHeight / 2 - 100 + Math.random() * 200) + 'px';
+                        heart.style.fontSize = '30px';
+                        heart.style.zIndex = '10000';
+                        heart.textContent = ['💕', '🔐', '❤️'][Math.floor(Math.random() * 3)];
+                        heart.style.pointerEvents = 'none';
+                        document.body.appendChild(heart);
+                        const float = heart.animate([{transform: 'scale(0)', opacity: 0}, {transform: 'scale(1.5)', opacity: 1}, {transform: 'scale(0)', opacity: 0}], {duration: 2000, easing: 'ease-out'});
+                        float.onfinish = () => heart.remove();
+                    }, i * 100);
+                }
+            }
+        }
+
+        let memoriesRevealed = false;
+        const memories = [
+            {emoji: '😊', text: 'Pehli baar jab hum mile... everything changed! ✨'},
+            {emoji: '💬', text: 'Raat bhar baatein karna aur time ka pata hi nahi chalna! 🌙'},
+            {emoji: '😂', text: 'Tere saath hasna - best feeling ever! 💕'},
+            {emoji: '🥺', text: 'Jab tum mujhe Miss You kehti ho... mera dil! 💓'},
+            {emoji: '✨', text: 'Every moment with you is a memory I treasure! 💝'}
+        ];
+
+        function revealMemories() {
+            if (memoriesRevealed) return;
+            memoriesRevealed = true;
+            
+            const container = document.getElementById('memoriesContainer');
+            const button = document.getElementById('memoryButton');
+            button.style.display = 'none';
+            
+            memories.forEach((memory, index) => {
+                setTimeout(() => {
+                    const card = document.createElement('div');
+                    card.className = 'memory-card';
+                    card.innerHTML = `<span class="memory-emoji">${memory.emoji}</span><p>${memory.text}</p>`;
+                    container.appendChild(card);
+                    setTimeout(() => card.classList.add('show'), 100);
+                }, index * 800);
+            });
+        }
+
+        let finalShown = false;
+
+        function finalSurprise() {
+            if (finalShown) return;
+            finalShown = true;
+            
+            const button = document.getElementById('finalButton');
+            const message = document.getElementById('finalMessage');
+            
+            button.style.display = 'none';
+            message.innerHTML = "Surprise baby! 🎉💕<br><span style='font-size: 2rem;'>Main hamesha tumhare saath hoon! 🥰<br>Happy First Valentine's Day! 💖</span>";
+            message.style.opacity = '1';
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => createCelebrationHeart(), i * 50);
+            }
         }
     </script>
 </body>
